@@ -27,13 +27,22 @@ if(firebase.apps.length === 0)
 }
 
 
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import { navigationRef } from './components/navigation/RootNavigation';
+
 
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
+import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
+import AddScreen from './components/main/Add';
+import SaveScreen from './components/main/Save';
+
+//Remove afterwards
+console.disableYellowBox = true;
 
 const Stack = createStackNavigator();
 
@@ -75,11 +84,27 @@ export class App extends Component
     {
         const { loggedIn, loaded } = this.state;
 
+        function getHeaderTitle(route)
+        {
+            // If the focused route is not found, we need to assume it's the initial screen
+            // This can happen during if there hasn't been any navigation inside the screen
+            // In our case, it's "Feed" as that's the first screen inside the navigator
+            const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
+          
+            switch(routeName)
+            {
+                case 'Feed':
+                    return 'Feed';
+                case 'Profile':
+                    return 'Profile';
+            }
+        }
+
         if(!loaded)
         {
             return(
-                <View style={{ flex: 1, justifyContent: 'center' }}>
-                    <Text>Loading</Text>
+                <View style={styles.container}>
+                    <ActivityIndicator size="large" />
                 </View>
             )
         }
@@ -90,7 +115,8 @@ export class App extends Component
                 <NavigationContainer>
                     <Stack.Navigator initialRouteName="Landing">
                         <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false}} />
-                        <Stack.Screen name="Register" component={RegisterScreen}/>
+                        <Stack.Screen name="Register" component={RegisterScreen} />
+                        <Stack.Screen name="Login" component={LoginScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             )
@@ -98,7 +124,17 @@ export class App extends Component
 
         return(
             <Provider store={store}>
-                <MainScreen />
+                <NavigationContainer ref={navigationRef}>
+                    <Stack.Navigator initialRouteName="Main">
+                        <Stack.Screen name="Main" component={MainScreen}
+                            options={({ route }) => ({
+                                headerTitle: getHeaderTitle(route),
+                                headerShown: Platform.OS === 'android'? true: (Platform.OS === 'ios'? true: false),
+                            })} />
+                        <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} />
+                        <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} />
+                    </Stack.Navigator>                    
+                </NavigationContainer>
             </Provider>
         )
     }
@@ -113,5 +149,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
+        alignSelf: 'center',
     },
 });
