@@ -19,6 +19,7 @@ export class Main extends Component
         {
             return(
                 <View style={{ flex: 1, justifyContent: 'center' }}>
+                    Fetching
                 </View>
             )
         }
