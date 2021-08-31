@@ -1,38 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-
-import Firebase from 'firebase';
-
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './redux/reducers';
-import thunk from 'redux-thunk';
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-// Hide this portion in ENV variable
-const firebaseConfig =
-{
-    apiKey: "AIzaSyCPp8u8-aGWIQTopNOXXiEu3vmxLi7hAcQ",
-    authDomain: "snapshot-4362f.firebaseapp.com",
-    projectId: "snapshot-4362f",
-    storageBucket: "snapshot-4362f.appspot.com",
-    messagingSenderId: "291469004295",
-    appId: "1:291469004295:web:13e8f7fe20600f014764a2",
-    measurementId: "G-3Y7KSH231Q"
-};
-
-if(Firebase.apps.length === 0)
-{
-    Firebase.initializeApp(firebaseConfig);
-}
-
-
 import { ActivityIndicator, StyleSheet, Text, View, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { navigationRef } from './components/navigation/RootNavigation';
-
 
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
@@ -42,14 +14,26 @@ import AddScreen from './components/main/Add';
 import SaveScreen from './components/main/Save';
 import CommentsScreen from './components/main/Comments';
 
-//Remove afterwards
-console.disableYellowBox = true;
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+import Firebase from 'firebase';
+import { firebaseConfig } from './Firebase-Config';
 
+if(Firebase.apps.length === 0)
+{
+    Firebase.initializeApp(firebaseConfig);
+}
+
+
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './redux/reducers';
+import thunk from 'redux-thunk';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const Stack = createStackNavigator();
+
+//Remove afterwards
+console.disableYellowBox = true;
 
 export class App extends Component
 {
