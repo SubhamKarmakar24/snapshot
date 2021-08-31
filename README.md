@@ -6,3 +6,4 @@ What to do to run this project:
 3. Enable Email/Password sign in in Firebase Authentication
 4. Create a Firestore database in test mode
 5. Create a collection named "users" in the database
+6. Firebase init for Cloud Functions
