@@ -1,6 +1,6 @@
 import React, { useState, useFocusEffect, useCallback } from 'react';
 import { View, TextInput, Image, StyleSheet, Button, BackHandler } from 'react-native';
-import * as RootNavigation from '../navigation/RootNavigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 import Firebase from 'firebase';
 require("firebase/firestore");
@@ -33,6 +33,7 @@ export default function Save(props)
         {
             task.snapshot.ref.getDownloadURL().then((snapshot) =>
             {
+                savePostData(snapshot);
                 console.log(snapshot);
             });
         }
@@ -43,6 +44,22 @@ export default function Save(props)
         }
 
         task.on("state_changed", taskProgress, taskError, taskCompleted);
+    }
+
+    const savePostData = (downloadURL) =>
+    {
+        Firebase.firestore().collection("posts")
+        .doc(Firebase.auth().currentUser.uid)
+        .collection("userPosts")
+        .add({
+            downloadURL,
+            caption,
+            creation: Firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        .then((function ()
+        {
+            props.navigation.popToTop();
+        }))
     }
 
     return (
