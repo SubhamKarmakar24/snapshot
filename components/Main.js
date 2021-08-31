@@ -69,12 +69,9 @@ export class Main extends Component
     }
 }
 
-const mapStateToProps = (store) =>
-(
-{
+const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser
-}
-);
+});
 const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPosts, fetchUserFollowing, clearData }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

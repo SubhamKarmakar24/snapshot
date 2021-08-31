@@ -40,6 +40,7 @@ import LoginScreen from './components/auth/Login';
 import MainScreen from './components/Main';
 import AddScreen from './components/main/Add';
 import SaveScreen from './components/main/Save';
+import CommentsScreen from './components/main/Comments';
 
 //Remove afterwards
 console.disableYellowBox = true;
@@ -133,6 +134,7 @@ export class App extends Component
                             })} />
                         <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} />
                         <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} />
+                        <Stack.Screen name="Comments" component={CommentsScreen} navigation={this.props.navigation} />
                     </Stack.Navigator>                    
                 </NavigationContainer>
             </Provider>

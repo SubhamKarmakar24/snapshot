@@ -14,7 +14,7 @@ function Feed(props)
         
         let posts = [];
 
-        if(props.usersLoaded === props.following.length)
+        if(props.usersFollowingLoaded === props.following.length)
         {
             for(let i=0;i<props.following.length;i++)
             {
@@ -34,7 +34,7 @@ function Feed(props)
             setPosts(posts);
         }
 
-    }, [props.usersLoaded]);
+    }, [props.usersFollowingLoaded]);
 
     return (
         <View style={styles.container}>
@@ -50,6 +50,11 @@ function Feed(props)
                                 style={styles.image}
                                 source={{uri: item.downloadURL}}
                             />
+                            <Text
+                                onPress={() => props.navigation.navigate("Comments", { postId: item.id, uid: item.user.uid })}
+                            >
+                                View Comments...
+                            </Text>
                         </View>
                     )}
                 />
@@ -62,7 +67,7 @@ const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser,
     following: store.userState.following,
     users: store.usersState.users,
-    usersLoaded: store.usersState.usersLoaded
+    usersFollowingLoaded: store.usersState.usersFollowingLoaded
 });
 
 export default connect(mapStateToProps, null)(Feed);
