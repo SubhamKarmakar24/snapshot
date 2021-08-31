@@ -54,6 +54,7 @@ export default function Save(props)
         .add({
             downloadURL,
             caption,
+            likesCount: 0,
             creation: Firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then((function ()
