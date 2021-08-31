@@ -86,6 +86,8 @@ export class App extends Component
                     return 'Feed';
                 case 'Profile':
                     return 'Profile';
+                case 'Search':
+                    return 'Search';
             }
         }
 
