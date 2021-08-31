@@ -44,6 +44,10 @@ import CommentsScreen from './components/main/Comments';
 
 //Remove afterwards
 console.disableYellowBox = true;
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
+
 
 const Stack = createStackNavigator();
 

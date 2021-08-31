@@ -1,4 +1,4 @@
-import { USER_STATE_CHANGE, USER_POSTS_STATE_CHANGE, USER_FOLLOWING_STATE_CHANGE, USERS_DATA_STATE_CHANGE, USERS_POSTS_STATE_CHANGE, CLEAR_DATA } from "../constants/index";
+import { USER_STATE_CHANGE, USER_POSTS_STATE_CHANGE, USER_FOLLOWING_STATE_CHANGE, USERS_DATA_STATE_CHANGE, USERS_POSTS_STATE_CHANGE, USERS_LIKES_STATE_CHANGE, CLEAR_DATA } from "../constants/index";
 import Firebase from "firebase";
 
 export function clearData()
@@ -136,7 +136,38 @@ export function fetchUsersFollowingPosts(uid)
                 const id = doc.id;
                 return { id, ...data, user };
             });
+            for(let i=0;i<posts.length;i++)
+            {
+                dispatch(fetchUsersFollowingLikes(uid, posts[i].id));
+            }
             dispatch({ type: USERS_POSTS_STATE_CHANGE, posts, uid });
+        })
+    })
+}
+
+export function fetchUsersFollowingLikes(uid, postId)
+{
+    return((dispatch, getState) => {
+        Firebase.firestore()
+        .collection("posts")
+        .doc(uid)
+        .collection("userPosts")
+        .doc(postId)
+        .collection("likes")
+        .doc(Firebase.auth().currentUser.uid)
+        .onSnapshot((snapshot) =>
+        {
+            //since this is async process, we will lose the respective post ID param
+            //thus, we are trying to find the post ID from the Snapshot
+            const postId = snapshot.ref.path.split('/')[3];
+
+            let currentUserLike = false;
+            if(snapshot.exists)
+            {
+                currentUserLike = true;
+            }
+            
+            dispatch({ type: USERS_LIKES_STATE_CHANGE, postId, currentUserLike });
         })
     })
 }
