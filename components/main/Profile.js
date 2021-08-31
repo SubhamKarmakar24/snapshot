@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, FlatList, StyleSheet, ActivityIndicator, Button } from 'react-native';
+import { View, Text, Image, FlatList, StyleSheet, ActivityIndicator, Button, Platform } from 'react-native';
 
 import Firebase from 'firebase';
 require('firebase/firestore');
@@ -23,7 +23,7 @@ function Profile(props)
         }
         else
         {
-            firebase.firestore()
+            Firebase.firestore()
             .collection("users")
             .doc(props.route.params.uid)
             .get()
@@ -39,7 +39,7 @@ function Profile(props)
                 }
             })
 
-            firebase.firestore()
+            Firebase.firestore()
             .collection("posts")
             .doc(props.route.params.uid)
             .collection("userPosts")
@@ -55,7 +55,17 @@ function Profile(props)
                 setUserPosts(posts);
             })
         }
-    }, [props.route.params.uid]);
+
+        if(props.following.indexOf(props.route.params.uid) > -1)
+        {
+            setFollowing(true);
+        }
+        else
+        {
+            setFollowing(false);
+        }
+
+    }, [props.route.params.uid, props.following]);
 
 
     const onFollow = () =>
@@ -132,7 +142,8 @@ function Profile(props)
 
 const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser,
-    posts: store.userState.posts
+    posts: store.userState.posts,
+    following: store.userState.following
 });
 
 export default connect(mapStateToProps, null)(Profile);
@@ -154,8 +165,24 @@ const styles = StyleSheet.create({
     },
     image:
     {
-        flex: 1,
-        aspectRatio: 1,
+        ...Platform.select({
+            ios:
+            {
+                flex: 1,
+                aspectRatio: 1,           
+            },
+            android:
+            {
+                flex: 1,
+                aspectRatio: 1,
+            },
+            default:
+            {
+                // width: '100%',
+                height: 500,
+                aspectRatio: 1,
+            },
+        }),
     },
     imageContainer:
     {

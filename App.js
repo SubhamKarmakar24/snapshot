@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
 
-import firebase from 'firebase';
+import Firebase from 'firebase';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
@@ -21,9 +21,9 @@ const firebaseConfig =
     measurementId: "G-3Y7KSH231Q"
 };
 
-if(firebase.apps.length === 0)
+if(Firebase.apps.length === 0)
 {
-    firebase.initializeApp(firebaseConfig);
+    Firebase.initializeApp(firebaseConfig);
 }
 
 
@@ -61,7 +61,7 @@ export class App extends Component
 
     componentDidMount()
     {
-        firebase.auth().onAuthStateChanged((user) =>
+        Firebase.auth().onAuthStateChanged((user) =>
         {
             if(!user)
             {
