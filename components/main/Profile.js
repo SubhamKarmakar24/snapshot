@@ -14,7 +14,6 @@ function Profile(props)
 
     useEffect(() => {
         const { currentUser, posts } = props;
-        console.log({ currentUser, posts });
 
         if(props.route.params.uid === Firebase.auth().currentUser.uid)
         {
