@@ -1,9 +1,31 @@
 # *App Name -*  Snapshot
 ### A cross-platform app\** *(Android, iOS, Web)* for the users to upload their snaps, follow other people of their interests, comment on others snaps and like them for the rest of the world to see.
 
->\*\**This app doesn't serve you ads and neither tracks your info (of course, it's open source for the same). No personal data in any form would be shared with any other individual or organization and users can have their privacy and peace of mind while uploading their most cherished snaps.*
+<br />
 
-*This app doesn't have a production build yet, and its first version would be released upon finishing the To - Dos below*
+## Stacks/Libraries used :
+
+- React Native Expo - v42.0.1
+- Expo Camera - v11.2.2
+- Expo Image Picker - v10.2.2
+- React Navigation - v6.0.2
+- React Native Gesture Handler - v1.10.3
+- React Native Paper - v4.9.2
+- React Native Vector Icons - v8.1.0
+- Redux - v4.1.1
+- React Redux - v7.2.4
+- Redux Thunk - v2.3.0
+- Firebase by Google - v8.2.3
+  - Firebase Analytics
+  - Firebase Auth
+  - Firestore Database
+  - Cloud Storage
+  - Cloud Functions
+- Node - v16.0.0
+
+<br />
+
+*\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the To - Dos below*
 
 <br />
 
