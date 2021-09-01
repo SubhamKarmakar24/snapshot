@@ -15,6 +15,7 @@ import SaveScreen from './components/main/Save';
 import CommentsScreen from './components/main/Comments';
 
 import Firebase from 'firebase';
+
 import { firebaseConfig } from './Firebase-Config';
 
 if(Firebase.apps.length === 0)
