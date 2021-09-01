@@ -58,7 +58,7 @@ export const firebaseConfig =
 - Run `expo start`.
 - A console will open in the Web Browser.
 - Select the environment you want to open the app in.
-- To run the app in a physical device(***Android, iOS***), download the **Expo Go** app from ***Play Store or App Store***. For **Android**, scan the QR code from the **Expo Go** app. For **iOS**, open the Camera app and point to the QR code, and tap the **Open in Expo Go** notification that appears.
+- To run the app in a physical device(***Android, iOS***), download the **Expo Go** app from ***[Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_IN&gl=US) or [App Store](https://apps.apple.com/us/app/expo-go/id982107779)***. For **Android**, scan the QR code from the **Expo Go** app. For **iOS**, open the Camera app and point to the QR code, and tap the **Open in Expo Go** notification that appears.
 
 ##
 
