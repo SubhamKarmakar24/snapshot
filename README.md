@@ -5,23 +5,23 @@
 
 ## Stacks/Libraries used :
 
-- React Native Expo - v42.0.1
-- Expo Camera - v11.2.2
-- Expo Image Picker - v10.2.2
-- React Navigation - v6.0.2
-- React Native Gesture Handler - v1.10.3
-- React Native Paper - v4.9.2
-- React Native Vector Icons - v8.1.0
-- Redux - v4.1.1
-- React Redux - v7.2.4
-- Redux Thunk - v2.3.0
-- Firebase by Google - v8.2.3
-  - Firebase Analytics
-  - Firebase Auth
-  - Firestore Database
-  - Cloud Storage
-  - Cloud Functions
-- Node - v16.0.0
+- `React Native Expo - v42.0.1`
+- `Expo Camera - v11.2.2`
+- `Expo Image Picker - v10.2.2`
+- `React Navigation - v6.0.2`
+- `React Native Gesture Handler - v1.10.3`
+- `React Native Paper - v4.9.2`
+- `React Native Vector Icons - v8.1.0`
+- `Redux - v4.1.1`
+- `React Redux - v7.2.4`
+- `Redux Thunk - v2.3.0`
+- `Firebase by Google - v8.2.3`
+  - `Firebase Analytics`
+  - `Firebase Auth`
+  - `Firestore Database`
+  - `Cloud Storage`
+  - `Cloud Functions`
+- `Node - v16.0.0`
 
 <br />
 
