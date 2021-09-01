@@ -32,7 +32,7 @@
 ## Immediate To - Dos :
 
 - [ ] [Fresh new UI](https://github.com/SubhamKarmakar24/snapshot/issues/12) #12
-- [ ] [Firebase App-Check module import giving no such module error](https://github.com/SubhamKarmakar24/snapshot/issues/17) #17
+- [ ] [Firebase App-Check module import giving 'no such module' error](https://github.com/SubhamKarmakar24/snapshot/issues/17) #17
 - [ ] [Image Compression required before upload](https://github.com/SubhamKarmakar24/snapshot/issues/6) #6
 - [ ] [Comments don't update when a comment is posted by user](https://github.com/SubhamKarmakar24/snapshot/issues/9) #9
 - [ ] [Size of image and aspect ratio in different devices](https://github.com/SubhamKarmakar24/snapshot/issues/13) #13
