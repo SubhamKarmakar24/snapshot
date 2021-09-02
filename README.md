@@ -95,6 +95,8 @@ I have also created the **Firebase Cloud Functions** that is required for updati
 A huge thanks to **Simcoder's** Youtube channel which helped me in building the bare bones of this app, upon which the future versions and extra features would be implemented, and hopefully be released to the public if the app meets the necessary performance and features that users may actually like.
 
 <br />
+<br />
+<br />
 
 **Read the CONTRIBUTING.md and CODE_OF_CONDUCT.md before contributing to this project.**
 
