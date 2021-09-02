@@ -1,4 +1,4 @@
-# *App Name -*  Snapshot
+# Snapshot
 ### A cross-platform app\** *(Android, iOS, Web)* for the users to upload their snaps, follow other people of their interests, comment on others snaps and like them for the rest of the world to see.
 
 <br />
