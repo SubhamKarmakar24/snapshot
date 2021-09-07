@@ -25,8 +25,6 @@
 
 <br />
 
-*\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the To - Dos below*
-
 <br />
 
 ## Immediate To - Dos :
@@ -86,6 +84,12 @@ export const firebaseConfig =
 ##
 
 I have also created the **Firebase Cloud Functions** that is required for updating the **Likes count** in the app. The code is present in the `backend` folder, which can be run using `npm install` followed by `firebase deploy` in the terminal opened in the `backend` directory. But for the functions to deploy, you need a **Blaze plan** of Firebase. Although it won't charge you unless you exceed the quota, it still needs a billing account to provide you the Cloud services for free.
+
+<br />
+<br />
+
+
+*\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the To - Dos below*
 
 <br />
 
