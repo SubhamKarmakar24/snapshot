@@ -37,7 +37,7 @@
 
 <br />
 
-## Set up the development environment :
+## Setting up the development environment :
 
 - Clone this repository into your local drive.
 - Navigate to the directory `snapshot/frontend`.
@@ -72,7 +72,7 @@ export const firebaseConfig =
 
 <br />
 
-## To run the app in Web, Android or iOS :
+## Running the app in Web, Android or iOS :
 - Open a terminal inside the `frontend` folder.
 - Run `expo start`.
 - A console will open in the Web Browser.
@@ -128,4 +128,4 @@ SOFTWARE.**
 
 <br />
 
-*\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the To - Dos below*
+*\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the Immediate To - Dos*
