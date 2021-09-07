@@ -124,10 +124,11 @@ SOFTWARE.**
 
 *\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the Immediate To - Dos*
 
-<br />
-
-<br />
-
 ##
+
+<br />
+
+<br />
+
 
 A huge thanks to **Simcoder's** Youtube channel which helped me in building the bare bones of this app, upon which the future versions and extra features would be implemented, and hopefully be released to the public if the app meets the necessary performance and features that users may actually like.
