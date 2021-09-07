@@ -25,8 +25,6 @@
 
 <br />
 
-<br />
-
 ## Immediate To - Dos :
 
 - [ ] [Fresh new UI](https://github.com/SubhamKarmakar24/snapshot/issues/12) #12
@@ -88,11 +86,6 @@ I have also created the **Firebase Cloud Functions** that is required for updati
 <br />
 <br />
 
-
-*\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the To - Dos below*
-
-<br />
-
 ##
 
 A huge thanks to **Simcoder's** Youtube channel which helped me in building the bare bones of this app, upon which the future versions and extra features would be implemented, and hopefully be released to the public if the app meets the necessary performance and features that users may actually like.
@@ -128,3 +121,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.**
+
+<br />
+
+<br />
+
+<br />
+
+*\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the To - Dos below*
