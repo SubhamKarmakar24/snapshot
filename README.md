@@ -39,7 +39,8 @@
 
 ## Setting up the development environment :
 
-- Clone this repository into your local drive.
+- Fork this repository.
+- Clone the forked repository into your local drive.
 - Navigate to the directory `snapshot/frontend`.
 - While inside the `frontend` directory, open a terminal (ensure path points to `frontend` directory) and run `npm install` or `npm i`.
 - Create a file named **`Firebase-Config.js`** inside the `frontend` directory.
