@@ -1,3 +1,6 @@
+<!-- MAKE SURE THAT THE PULL REQUEST IS TO THE DEV BRANCH AND NOT THE MAIN BRANCH -->
+<!-- ANY PULL REQUEST TO MAIN BRANCH WOULD NOT BE MERGED UNLESS THE CHANGES HAVE BEEN TESTED IN THE DEV BRANCH -->
+<!-- YOU WILL HAVE TO MAKE ANOTHER PULL REQUEST TO THE DEV BRANCH IF YOU MAKE THE PULL REQUEST TO THE MAIN BRANCH -->
 \*\***Describe the issue that the Pull Request resolves**\*\*
 
 A clear and concise description of the issue. If the issue is present in the list of issues, mention `closes #<issue number>`
