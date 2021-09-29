@@ -12,6 +12,12 @@ A brief description of the changes in logic or code made and how it resolves the
 
 \*\***Mention the person responsible for reviewing the proposed changes**\*\*
 
-Use `@` to bring out a list of contributors of this repository and choose the person to tag.
+Use `@` to bring out a list of contributors of this repository and choose the person to tag.(Optional)
+
+<br/>
+
+**MAKE SURE THAT THE PULL REQUEST IS TO THE DEV BRANCH AND NOT THE MAIN BRANCH
+ANY PULL REQUEST TO MAIN BRANCH WOULD NOT BE MERGED UNLESS THE CHANGES HAVE BEEN TESTED IN THE DEV BRANCH
+YOU WILL HAVE TO MAKE ANOTHER PULL REQUEST TO THE DEV BRANCH IF YOU MAKE THE PULL REQUEST TO THE MAIN BRANCH**
 
 @SubhamKarmakar24
