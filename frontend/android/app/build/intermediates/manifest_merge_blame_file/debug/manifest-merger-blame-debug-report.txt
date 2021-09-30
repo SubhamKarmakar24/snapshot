@@ -1,0 +1,238 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.project.snapshot"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="30" />
+10
+11    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+11-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:6:3-75
+11-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:6:20-73
+12    <uses-permission android:name="android.permission.CAMERA" />
+12-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:2:3-62
+12-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:2:20-60
+13    <uses-permission android:name="android.permission.INTERNET" />
+13-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:3:3-64
+13-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:3:20-62
+14    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+14-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:4:3-77
+14-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:4:20-75
+15    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+15-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:5:3-68
+15-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:5:20-66
+16    <uses-permission android:name="android.permission.VIBRATE" />
+16-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:7:3-63
+16-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:7:20-61
+17    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+17-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:8:3-78
+17-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:8:20-76
+18    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+18-->[com.facebook.flipper:flipper:0.54.0] C:\Users\Subham\.gradle\caches\transforms-3\7ced98fae9ea2b5aa64e54aefef0d400\transformed\jetified-flipper-0.54.0\AndroidManifest.xml:16:5-76
+18-->[com.facebook.flipper:flipper:0.54.0] C:\Users\Subham\.gradle\caches\transforms-3\7ced98fae9ea2b5aa64e54aefef0d400\transformed\jetified-flipper-0.54.0\AndroidManifest.xml:16:22-73
+19    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+19-->[:expo-updates] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-updates\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:5-79
+19-->[:expo-updates] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-updates\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:11:22-76
+20
+21    <queries>
+21-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:5-22:15
+22
+23        <!-- Query open documents -->
+24        <intent>
+24-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-21:18
+25            <action android:name="android.intent.action.OPEN_DOCUMENT_TREE" />
+25-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:13-79
+25-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:20:21-76
+26        </intent>
+27        <intent>
+27-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:9-22:18
+28
+29            <!-- Required for picking images from the camera roll if targeting API 30 -->
+30            <action android:name="android.media.action.IMAGE_CAPTURE" />
+30-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:13-73
+30-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:21:21-70
+31        </intent>
+32        <intent>
+32-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:9-27:18
+33
+34            <!-- Required for picking images from the camera if targeting API 30 -->
+35            <action android:name="android.media.action.ACTION_VIDEO_CAPTURE" />
+35-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:13-80
+35-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:21-77
+36        </intent>
+37    </queries>
+38
+39    <uses-feature
+39-->[com.google.android:cameraview:1.0.0] C:\Users\Subham\.gradle\caches\transforms-3\37e573c204a26f532fca11453ce7aca8\transformed\jetified-cameraview-1.0.0\AndroidManifest.xml:25:5-27:36
+40        android:name="android.hardware.camera"
+40-->[com.google.android:cameraview:1.0.0] C:\Users\Subham\.gradle\caches\transforms-3\37e573c204a26f532fca11453ce7aca8\transformed\jetified-cameraview-1.0.0\AndroidManifest.xml:26:9-47
+41        android:required="false" />
+41-->[com.google.android:cameraview:1.0.0] C:\Users\Subham\.gradle\caches\transforms-3\37e573c204a26f532fca11453ce7aca8\transformed\jetified-cameraview-1.0.0\AndroidManifest.xml:27:9-33
+42    <uses-feature
+42-->[com.google.android:cameraview:1.0.0] C:\Users\Subham\.gradle\caches\transforms-3\37e573c204a26f532fca11453ce7aca8\transformed\jetified-cameraview-1.0.0\AndroidManifest.xml:28:5-30:36
+43        android:name="android.hardware.camera.autofocus"
+43-->[com.google.android:cameraview:1.0.0] C:\Users\Subham\.gradle\caches\transforms-3\37e573c204a26f532fca11453ce7aca8\transformed\jetified-cameraview-1.0.0\AndroidManifest.xml:29:9-57
+44        android:required="false" />
+44-->[com.google.android:cameraview:1.0.0] C:\Users\Subham\.gradle\caches\transforms-3\37e573c204a26f532fca11453ce7aca8\transformed\jetified-cameraview-1.0.0\AndroidManifest.xml:30:9-33
+45
+46    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+46-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Subham\.gradle\caches\transforms-3\b9a019226c44558a459214ad2785d04e\transformed\jetified-installreferrer-1.0\AndroidManifest.xml:9:5-110
+46-->[com.android.installreferrer:installreferrer:1.0] C:\Users\Subham\.gradle\caches\transforms-3\b9a019226c44558a459214ad2785d04e\transformed\jetified-installreferrer-1.0\AndroidManifest.xml:9:22-107
+47
+48    <application
+48-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:9:3-29:17
+49        android:name="com.project.snapshot.MainApplication"
+49-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:9:16-47
+50        android:allowBackup="true"
+50-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:9:162-188
+51        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+51-->[androidx.core:core:1.3.0] C:\Users\Subham\.gradle\caches\transforms-3\fe3cf0882eb40046447bd9893532f7c5\transformed\core-1.3.0\AndroidManifest.xml:24:18-86
+52        android:debuggable="true"
+53        android:icon="@mipmap/ic_launcher"
+53-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:9:81-115
+54        android:label="@string/app_name"
+54-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:9:48-80
+55        android:roundIcon="@mipmap/ic_launcher_round"
+55-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:9:116-161
+56        android:theme="@style/AppTheme"
+56-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:9:189-220
+57        android:usesCleartextTraffic="true" >
+57-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:9:221-256
+58        <meta-data
+58-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:10:5-82
+59            android:name="expo.modules.updates.ENABLED"
+59-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:10:16-59
+60            android:value="true" />
+60-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:10:60-80
+61        <meta-data
+61-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:11:5-93
+62            android:name="expo.modules.updates.EXPO_SDK_VERSION"
+62-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:11:16-68
+63            android:value="42.0.0" />
+63-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:11:69-91
+64        <meta-data
+64-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:12:5-105
+65            android:name="expo.modules.updates.EXPO_UPDATES_CHECK_ON_LAUNCH"
+65-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:12:16-80
+66            android:value="ALWAYS" />
+66-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:12:81-103
+67        <meta-data
+67-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:13:5-99
+68            android:name="expo.modules.updates.EXPO_UPDATES_LAUNCH_WAIT_MS"
+68-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:13:16-79
+69            android:value="0" />
+69-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:13:80-97
+70        <meta-data
+70-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:14:5-128
+71            android:name="expo.modules.updates.EXPO_UPDATE_URL"
+71-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:14:16-67
+72            android:value="https://exp.host/@cruel_mortal_24/snapshot" />
+72-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:14:68-126
+73
+74        <activity
+74-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:15:5-26:16
+75            android:name="com.project.snapshot.MainActivity"
+75-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:15:15-43
+76            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+76-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:15:77-154
+77            android:label="@string/app_name"
+77-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:15:44-76
+78            android:launchMode="singleTask"
+78-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:15:155-186
+79            android:screenOrientation="portrait"
+79-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:15:276-312
+80            android:theme="@style/Theme.App.SplashScreen"
+80-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:15:230-275
+81            android:windowSoftInputMode="adjustResize" >
+81-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:15:187-229
+82            <intent-filter>
+82-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:16:7-19:23
+83                <action android:name="android.intent.action.MAIN" />
+83-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:17:9-60
+83-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:17:17-58
+84
+85                <category android:name="android.intent.category.LAUNCHER" />
+85-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:18:9-68
+85-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:18:19-66
+86            </intent-filter>
+87            <intent-filter>
+87-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:20:7-25:23
+88                <action android:name="android.intent.action.VIEW" />
+88-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:21:9-60
+88-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:21:17-58
+89
+90                <category android:name="android.intent.category.DEFAULT" />
+90-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:22:9-67
+90-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:22:19-65
+91                <category android:name="android.intent.category.BROWSABLE" />
+91-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:23:9-69
+91-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:23:19-67
+92
+93                <data android:scheme="com.project.snapshot" />
+93-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:24:9-54
+93-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:24:15-52
+94            </intent-filter>
+95        </activity>
+96        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+96-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:27:5-81
+96-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:27:15-79
+97        <activity
+97-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:28:5-124
+98            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+98-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:28:15-78
+99            android:theme="@style/Base.Theme.AppCompat" />
+99-->D:\Documents\3.Development\snapshot\frontend\android\app\src\main\AndroidManifest.xml:28:79-122
+100
+101        <meta-data
+101-->[:unimodules-react-native-adapter] D:\Documents\3.Development\snapshot\frontend\node_modules\@unimodules\react-native-adapter\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:9-14:91
+102            android:name="org.unimodules.core.AppLoader#react-native-headless"
+102-->[:unimodules-react-native-adapter] D:\Documents\3.Development\snapshot\frontend\node_modules\@unimodules\react-native-adapter\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:13:13-79
+103            android:value="org.unimodules.adapters.react.apploader.RNHeadlessAppLoader" />
+103-->[:unimodules-react-native-adapter] D:\Documents\3.Development\snapshot\frontend\node_modules\@unimodules\react-native-adapter\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:14:13-88
+104
+105        <provider
+105-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:25:9-34:20
+106            android:name="expo.modules.filesystem.FileSystemFileProvider"
+106-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:26:13-74
+107            android:authorities="com.project.snapshot.FileSystemFileProvider"
+107-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:13-74
+108            android:exported="false"
+108-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-37
+109            android:grantUriPermissions="true" >
+109-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-47
+110            <meta-data
+110-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-33:70
+111                android:name="android.support.FILE_PROVIDER_PATHS"
+111-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:32:17-67
+112                android:resource="@xml/file_system_provider_paths" />
+112-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:33:17-67
+113        </provider> <!-- https://developer.android.com/guide/topics/manifest/provider-element.html -->
+114        <provider
+114-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:35:9-43:20
+115            android:name="expo.modules.imagepicker.ImagePickerFileProvider"
+115-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:13-76
+116            android:authorities="com.project.snapshot.ImagePickerFileProvider"
+116-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:37:13-75
+117            android:exported="false"
+117-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:38:13-37
+118            android:grantUriPermissions="true" >
+118-->[:expo-image-picker] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-image-picker\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:39:13-47
+119            <meta-data
+119-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-33:70
+120                android:name="android.support.FILE_PROVIDER_PATHS"
+120-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:32:17-67
+121                android:resource="@xml/image_picker_provider_paths" />
+121-->[:expo-file-system] D:\Documents\3.Development\snapshot\frontend\node_modules\expo-file-system\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:33:17-67
+122        </provider>
+123
+124        <service
+124-->[androidx.room:room-runtime:2.1.0] C:\Users\Subham\.gradle\caches\transforms-3\3b5db4b3b22ae452a34a6490900f58b2\transformed\room-runtime-2.1.0\AndroidManifest.xml:25:9-27:40
+125            android:name="androidx.room.MultiInstanceInvalidationService"
+125-->[androidx.room:room-runtime:2.1.0] C:\Users\Subham\.gradle\caches\transforms-3\3b5db4b3b22ae452a34a6490900f58b2\transformed\room-runtime-2.1.0\AndroidManifest.xml:26:13-74
+126            android:exported="false" />
+126-->[androidx.room:room-runtime:2.1.0] C:\Users\Subham\.gradle\caches\transforms-3\3b5db4b3b22ae452a34a6490900f58b2\transformed\room-runtime-2.1.0\AndroidManifest.xml:27:13-37
+127    </application>
+128
+129</manifest>

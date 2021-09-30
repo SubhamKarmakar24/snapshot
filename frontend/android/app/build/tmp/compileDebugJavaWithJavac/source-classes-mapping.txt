@@ -1,0 +1,17 @@
+com/project/snapshot/BuildConfig.java
+ com.project.snapshot.BuildConfig
+com/project/snapshot/MainApplication.java
+ com.project.snapshot.MainApplication
+ com.project.snapshot.MainApplication$1
+com/project/snapshot/ReactNativeFlipper.java
+ com.project.snapshot.ReactNativeFlipper
+ com.project.snapshot.ReactNativeFlipper$1
+ com.project.snapshot.ReactNativeFlipper$2
+ com.project.snapshot.ReactNativeFlipper$2$1
+com/project/snapshot/MainActivity.java
+ com.project.snapshot.MainActivity
+ com.project.snapshot.MainActivity$1
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
+com/project/snapshot/generated/BasePackageList.java
+ com.project.snapshot.generated.BasePackageList
