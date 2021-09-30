@@ -1,147 +1,112 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { Component } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View, Platform } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-import { navigationRef } from './components/navigation/RootNavigation';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
 
-import LandingScreen from './components/auth/Landing';
-import RegisterScreen from './components/auth/Register';
-import LoginScreen from './components/auth/Login';
-import MainScreen from './components/Main';
-import AddScreen from './components/main/Add';
-import SaveScreen from './components/main/Save';
-import CommentsScreen from './components/main/Comments';
+import React from 'react';
+import type {Node} from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
 
-import Firebase from 'firebase';
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
 
-import { firebaseConfig } from './Firebase-Config';
+const Section = ({children, title}): Node => {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
+    </View>
+  );
+};
 
-if(Firebase.apps.length === 0)
-{
-    Firebase.initializeApp(firebaseConfig);
-}
+const App: () => Node = () => {
+  const isDarkMode = useColorScheme() === 'dark';
 
+  const backgroundStyle = {
+    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  };
 
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './redux/reducers';
-import thunk from 'redux-thunk';
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-const Stack = createStackNavigator();
-
-//Remove afterwards
-console.disableYellowBox = true;
-
-export class App extends Component
-{
-    constructor(props)
-    {
-        super(props);
-
-        this.state =
-        {
-            loggedIn: false,
-            loaded: false,
-        }
-    }
-
-    componentDidMount()
-    {
-        Firebase.auth().onAuthStateChanged((user) =>
-        {
-            if(!user)
-            {
-                this.setState({
-                    loggedIn: false,
-                    loaded: true,
-                });
-            }
-            else
-            {
-                this.setState({
-                    loggedIn: true,
-                    loaded: true,
-                });
-            }
-        });
-    }
-
-    render()
-    {
-        const { loggedIn, loaded } = this.state;
-
-        function getHeaderTitle(route)
-        {
-            // If the focused route is not found, we need to assume it's the initial screen
-            // This can happen during if there hasn't been any navigation inside the screen
-            // In our case, it's "Feed" as that's the first screen inside the navigator
-            const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
-          
-            switch(routeName)
-            {
-                case 'Feed':
-                    return 'Feed';
-                case 'Profile':
-                    return 'Profile';
-                case 'Search':
-                    return 'Search';
-            }
-        }
-
-        if(!loaded)
-        {
-            return(
-                <View style={styles.container}>
-                    <ActivityIndicator size="large" />
-                </View>
-            )
-        }
-
-        if(!loggedIn)
-        {
-            return (
-                <NavigationContainer>
-                    <Stack.Navigator initialRouteName="Landing">
-                        <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false}} />
-                        <Stack.Screen name="Register" component={RegisterScreen} />
-                        <Stack.Screen name="Login" component={LoginScreen} />
-                    </Stack.Navigator>
-                </NavigationContainer>
-            )
-        }
-
-        return(
-            <Provider store={store}>
-                <NavigationContainer ref={navigationRef}>
-                    <Stack.Navigator initialRouteName="Main">
-                        <Stack.Screen name="Main" component={MainScreen}
-                            options={({ route }) => ({
-                                headerTitle: getHeaderTitle(route),
-                                headerShown: Platform.OS === 'android'? true: (Platform.OS === 'ios'? true: false),
-                            })} />
-                        <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} />
-                        <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} />
-                        <Stack.Screen name="Comments" component={CommentsScreen} navigation={this.props.navigation} />
-                    </Stack.Navigator>                    
-                </NavigationContainer>
-            </Provider>
-        )
-    }
-}
-
-export default App;
+  return (
+    <SafeAreaView style={backgroundStyle}>
+      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={backgroundStyle}>
+        <Header />
+        <View
+          style={{
+            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+          }}>
+          <Section title="Step One">
+            Edit <Text style={styles.highlight}>App.js</Text> to change this
+            screen and then come back to see your edits.
+          </Section>
+          <Section title="See Your Changes">
+            <ReloadInstructions />
+          </Section>
+          <Section title="Debug">
+            <DebugInstructions />
+          </Section>
+          <Section title="Learn More">
+            Read the docs to discover what to do next:
+          </Section>
+          <LearnMoreLinks />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
-    container:
-    {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
-    },
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+  },
+  highlight: {
+    fontWeight: '700',
+  },
 });
+
+export default App;
