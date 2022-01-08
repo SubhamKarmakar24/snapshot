@@ -1,6 +1,6 @@
 # Snapshot
-### A cross-platform social media app\** *(Android, iOS, Web)* for the users to upload their snaps, follow other people of their interests, comment on others snaps and like them for the rest of the world to see.
-
+### A cross-platform social media app\* for the users to upload their snaps, follow other people of their interests, comment on others snaps and like them for the rest of the world to see.
+\*(currently configured for Android. iOS configuration requires XCode configuration. The code requires no changes in iOS).
 <br />
 
 ## Stacks/Libraries used :
@@ -43,19 +43,21 @@
 - Clone the forked repository into your local drive.
 - Navigate to the directory `snapshot/frontend`.
 - While inside the `frontend` directory, open a terminal (ensure path points to `frontend` directory) and run `npm install` or `npm i`.
-- Create a file named **`Firebase-Config.js`** inside the `frontend` directory.
 - Head over to **[Firebase Console](https://console.firebase.google.com)** and login to your account.
 - After you have logged in to Firebase, in the Firebase Console, **add a project**.
 - You will be asked to give a name to your app, then hit **Continue**.
 - Enable **Google Analytics** and hit **Continue** again.
-- Now in the Console, **add a Web App** and give it a name and hit **Continue**.
-- After the app has been added, go to the **Project Settings** by clicking the gear icon on the top left part of the Firebase Console(beside **Project Overview**).
-- Scroll down a bit to see **Your Apps** section where you can see the Web App that you had created.
-- You will find a ***SDK setup and configuration*** section there. Choose **Config** in the list of options and copy the code that has been generated.
-- Paste the copied items inside the **`Firebase-Config.js`** file that you had created inside the `frontend` directory. Add `export` before `const firebaseConfig = { // Config // }`.
-> It should look like this
-```
-export const firebaseConfig =
+- Now in the Console, **add an Android App**.
+- Enter your projects details. The "Android package name" must match the local projects package name which can be found inside of the manifest tag within the `/android/app/src/main/AndroidManifest.xml` file within the project.
+- The **Debug Signing Certificate** is optional to use Firebase with the app, but is required for Dynamic Links, Invites and Phone Authentication. To generate a certificate run `cd android && ./gradlew signingReport`. This generates two variant keys. Copy both 'SHA1' and 'SHA-256' keys that belong to the `debugAndroidTest` variant key option. Then, those keys can be added to the 'SHA certificate fingerprints' on the app in Firebase console.
+- Download the `google-services.json` file and place it inside of the project at the following location: `/android/app/google-services.json`.
+<!-- - Create a file named **`Firebase-Config.js`** inside the `frontend` directory. -->
+<!-- - After the app has been added, go to the **Project Settings** by clicking the gear icon on the top left part of the Firebase Console(beside **Project Overview**). -->
+<!-- - Scroll down a bit to see **Your Apps** section where you can see the Web App that you had created. -->
+<!-- - You will find a ***SDK setup and configuration*** section there. Choose **Config** in the list of options and copy the code that has been generated. -->
+<!-- - Paste the copied items inside the **`Firebase-Config.js`** file that you had created inside the `frontend` directory. Add `export` before `const firebaseConfig = { // Config // }`. -->
+<!-- > It should look like this -->
+<!-- export const firebaseConfig =
 {
     apiKey: "XXX",
     authDomain: "XXX",
@@ -64,8 +66,7 @@ export const firebaseConfig =
     messagingSenderId: "XXX",
     appId: "XXX",
     measurementId: "XXX"
-};
-```
+}; -->
 
 - Go to the **[Firebase Console](https://console.firebase.google.com)** once again and select **Authentication** in the left pane. Go to the **Sign-in method** tab and enable **Email/Password** and hit Save.
 - Select **Firestore Database** from the left pane. Select **Create Database** and choose start in `test mode`(Ensure that during the development process, the database always remains in test mode, since it is configured to block database access after 30 days). Choose a location that is nearest to you in the list of locations.
@@ -75,10 +76,11 @@ export const firebaseConfig =
 
 ## Running the app in Web, Android or iOS :
 - Open a terminal inside the `frontend` folder.
-- Run `expo start`.
-- A console will open in the Web Browser.
-- Select the environment you want to open the app in.
-- To run the app in a physical device(***Android, iOS***), download the **Expo Go** app from ***[Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_IN&gl=US) or [App Store](https://apps.apple.com/us/app/expo-go/id982107779)***. For **Android**, scan the QR code from the **Expo Go** app. For **iOS**, open the Camera app and point to the QR code, and tap the **Open in Expo Go** notification that appears.
+- Run `npm run android`.
+- If an Android device is connected with USB Debugging enabled, the app will start in the physical device else it will run in the emulator.
+<!-- - A console will open in the Web Browser. -->
+<!-- - Select the environment you want to open the app in. -->
+<!-- - To run the app in a physical device(***Android, iOS***), download the **Expo Go** app from ***[Play Store](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=en_IN&gl=US) or [App Store](https://apps.apple.com/us/app/expo-go/id982107779)***. For **Android**, scan the QR code from the **Expo Go** app. For **iOS**, open the Camera app and point to the QR code, and tap the **Open in Expo Go** notification that appears. -->
 
 ##
 
