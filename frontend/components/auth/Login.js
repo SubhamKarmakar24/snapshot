@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { View, Button, TextInput } from 'react-native';
+import { View, Button, TextInput, StyleSheet } from 'react-native';
 
-import firebase from 'firebase';
+import auth from '@react-native-firebase/auth';
 
 export class Login extends Component
 {
@@ -9,47 +9,58 @@ export class Login extends Component
     {
         super(props);
 
-        this.state =
-        {
+        this.state = {
             email: '',
             password: '',
         }
 
-        this.onSignIn = this.onSignIn.bind(this);
+        this.onLogin = this.onLogin.bind(this);
     }
 
-    onSignIn()
+    onLogin()
     {
-        const { email, password, name } = this.state;
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((result) => 
-        {
-            console.log(result);
+        const { email, password } = this.state;
+        auth().signInWithEmailAndPassword(email, password)
+        .then((res) => {
+            console.log(res);
         })
-        .catch((error) =>
-        {
-            console.log(error);
-        });
+        .catch((err) => {
+            console.log(err);
+        })
     }
 
     render()
     {
         return (
-            <View>
+            <View style={styles.container}>
                 <TextInput
                     placeholder="Email"
                     keyboardType="email-address"
-                    onChangeText={(email) => this.setState({ email })} />
+                    onChangeText={(email) => this.setState({ email })}
+                />
                 <TextInput
                     placeholder="Password"
                     secureTextEntry={true}
-                    onChangeText={(password) => this.setState({ password })} />
+                    onChangeText={(password) => this.setState({ password })}
+                />
+
                 <Button
-                    onPress={() => this.onSignIn()}
-                    title="Sign In" />
+                    title="Register"
+                    onPress={() => this.onLogin()}
+                />
             </View>
         )
     }
 }
 
 export default Login;
+
+const styles = StyleSheet.create({
+    container:
+    {
+        flex: 1,
+        backgroundColor: '#000',
+        // alignItems: 'center',
+        // justifyContent: 'center'
+    }
+})

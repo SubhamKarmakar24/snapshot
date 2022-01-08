@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, Platform, ActivityIndicator } from 'react-native';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import React, { Component } from 'react'
+import { View, Button, Text, StyleSheet } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
-import Firebase from 'firebase';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchUser, fetchUserPosts, fetchUserFollowing, clearData } from '../redux/actions/index';
+
+import auth from '@react-native-firebase/auth';
 
 import FeedScreen from './main/Feed';
 import ProfileScreen from './main/Profile';
@@ -17,7 +17,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 const EmptyScreen = () =>
 {
-    return null;
+    return(null);
 }
 
 export class Main extends Component
@@ -33,17 +33,35 @@ export class Main extends Component
     render()
     {
         return (
-            <Tab.Navigator initialRouteName="Feed" labeled={false}>
-                <Tab.Screen name="Feed" component={FeedScreen}
+            <Tab.Navigator
+                initialRouteName="Feed"
+                screenOptions={{
+                    headerShown: false,
+                }}
+                labeled={false}
+            >
+                <Tab.Screen
+                    name="Feed"
+                    component={FeedScreen} 
                     options={{
-                        tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="home" color={color} size={26} />),
-                    }} />
-
-                <Tab.Screen name="Search" component={SearchScreen} navigation={this.props.navigation}
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="home" color={color} size={26} />
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="Search"
+                    component={SearchScreen}
+                    navigation={this.props.navigation}
                     options={{
-                        tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="magnify" color={color} size={26} />),
-                    }} />
-                <Tab.Screen name="_Add" component={EmptyScreen}
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="magnify" color={color} size={26} />
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="Add_"
+                    component={EmptyScreen}
                     listeners={({ navigation }) => ({
                         tabPress: event => {
                             event.preventDefault();
@@ -51,19 +69,26 @@ export class Main extends Component
                         }
                     })}
                     options={{
-                        tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="plus-box" color={color} size={26} />),
-                    }} />
-                <Tab.Screen name="Profile" component={ProfileScreen}
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="plus-box" color={color} size={26} />
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="Profile"
+                    component={ProfileScreen}
                     listeners={({ navigation }) => ({
                         tabPress: event => {
                             event.preventDefault();
-                            navigation.navigate("Profile", { uid: Firebase.auth().currentUser.uid });
+                            navigation.navigate("Profile", { uid: auth().currentUser.uid });
                         }
                     })}
                     options={{
-                        headerShown: true,
-                        tabBarIcon: ({ color, size }) => (<MaterialCommunityIcons name="account-circle" color={color} size={26} />),
-                    }} />
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="account-circle" color={color} size={26} />
+                        ),
+                    }}
+                />
             </Tab.Navigator>
         )
     }
@@ -71,35 +96,18 @@ export class Main extends Component
 
 const mapStateToProps = (store) => ({
     currentUser: store.userState.currentUser
-});
-const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPosts, fetchUserFollowing, clearData }, dispatch);
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+const mapDispatchProps = (dispatch) => bindActionCreators({ fetchUser, fetchUserPosts, fetchUserFollowing, clearData }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchProps)(Main);
 
 const styles = StyleSheet.create({
-
     container:
     {
-        width: '100%',
         flex: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        ...Platform.select({
-            ios:
-            {
-                backgroundColor: '#efe',
-            },
-            android:
-            {
-                backgroundColor: '#efe',
-            },
-            default:
-            {
-                backgroundColor: '#efe',
-            },
-        }),
-    },
-
-
-});
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})

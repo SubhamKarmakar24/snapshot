@@ -5,8 +5,8 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
-exports.addLike = functions.
-    firestore.document("./posts/{creatorId}/userPosts/{postId}/likes/{userId}")
+exports.addLike = functions
+    .firestore.document("./posts/{creatorId}/userPosts/{postId}/likes/{userId}")
     .onCreate((snap, context) => {
       return db.collection("posts")
           .doc(context.params.creatorId)
@@ -17,8 +17,8 @@ exports.addLike = functions.
           });
     });
 
-exports.removeLike = functions.
-    firestore.document("./posts/{creatorId}/userPosts/{postId}/likes/{userId}")
+exports.removeLike = functions
+    .firestore.document("./posts/{creatorId}/userPosts/{postId}/likes/{userId}")
     .onDelete((snap, context) => {
       return db.collection("posts")
           .doc(context.params.creatorId)

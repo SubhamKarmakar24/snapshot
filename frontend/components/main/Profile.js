@@ -1,56 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, FlatList, StyleSheet, ActivityIndicator, Button, Platform } from 'react-native';
-
-import Firebase from 'firebase';
-require('firebase/firestore');
-
+import { View, Text, Image, FlatList, StyleSheet, TouchableHighlight, TouchableOpacity, ActivityIndicator, Button } from 'react-native';
 import { connect } from 'react-redux';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function Profile(props)
 {
-    const [userPosts, setUserPosts] = useState([]);
     const [user, setUser] = useState(null);
+    const [userPosts, setUserPosts] = useState([]);
     const [following, setFollowing] = useState(false);
 
     useEffect(() => {
         const { currentUser, posts } = props;
 
-        if(props.route.params.uid === Firebase.auth().currentUser.uid)
+        if(props.route.params.uid === auth().currentUser.uid)
         {
+            console.log("fetching logged in user...");
             setUser(currentUser);
             setUserPosts(posts);
         }
         else
         {
-            Firebase.firestore()
-            .collection("users")
+            firestore().collection("users")
             .doc(props.route.params.uid)
             .get()
-            .then((snapshot) =>
-            {
+            .then((snapshot) => {
                 if(snapshot.exists)
                 {
                     setUser(snapshot.data());
                 }
                 else
                 {
-                    console.log("Snapshot doesn't exist");
+                    console.log("User doesn't exist");
                 }
             })
 
-            Firebase.firestore()
-            .collection("posts")
+            firestore().collection("posts")
             .doc(props.route.params.uid)
             .collection("userPosts")
-            .orderBy("creation", "desc")
+            .orderBy("creation", "asc")
             .get()
-            .then((snapshot) =>
-            {
+            .then((snapshot) => {
+                console.log("fetching...");
                 let posts = snapshot.docs.map(doc => {
                     const data = doc.data();
                     const id = doc.id;
-                    return {id, ...data};
-                });
+                    return { id, ...data }
+                })
                 setUserPosts(posts);
             })
         }
@@ -66,12 +62,11 @@ function Profile(props)
 
     }, [props.route.params.uid, props.following]);
 
-
     const onFollow = () =>
     {
-        Firebase.firestore()
+        firestore()
         .collection("following")
-        .doc(Firebase.auth().currentUser.uid)
+        .doc(auth().currentUser.uid)
         .collection("userFollowing")
         .doc(props.route.params.uid)
         .set({})
@@ -79,19 +74,18 @@ function Profile(props)
 
     const onUnfollow = () =>
     {
-        Firebase.firestore()
+        firestore()
         .collection("following")
-        .doc(Firebase.auth().currentUser.uid)
+        .doc(auth().currentUser.uid)
         .collection("userFollowing")
         .doc(props.route.params.uid)
-        .delete({})
+        .delete()
     }
 
     const onLogout = () =>
     {
-        Firebase.auth().signOut();
+        auth().signOut();
     }
-
 
     if(user === null)
     {
@@ -102,11 +96,10 @@ function Profile(props)
 
     return (
         <View style={styles.container}>
-            <View style={styles.infoContainer}>
-                <Text>{ user.name }</Text>
-                <Text>{ user.email }</Text>
+            <View>    
+                <Text>{user.name}</Text>
                 {
-                    props.route.params.uid !== Firebase.auth().currentUser.uid ? 
+                    props.route.params.uid !== auth().currentUser.uid ?
                         <View>
                             {
                                 following ?
@@ -128,18 +121,20 @@ function Profile(props)
                         />
                 }
             </View>
-            <View style={styles.galleryContainer}>
+            <View style={styles.gallery}>
                 <FlatList
                     numColumns={3}
                     horizontal={false}
                     data={userPosts}
-                    renderItem={({item}) => (
-                        <View style={styles.imageContainer}>
+                    renderItem={({ item }) => (
+                        <TouchableOpacity style={styles.touchable}>
+                            {/* <View> */}
                             <Image
-                                style={styles.image}
-                                source={{uri: item.downloadURL}}
+                                source={{ uri: item.downloadURL }}
+                                style={styles.img}  
                             />
-                        </View>
+                            {/* </View> */}
+                        </TouchableOpacity>
                     )}
                 />
             </View>
@@ -156,44 +151,22 @@ const mapStateToProps = (store) => ({
 export default connect(mapStateToProps, null)(Profile);
 
 const styles = StyleSheet.create({
-
     container:
     {
         flex: 1,
+        backgroundColor: '#000',
     },
-    infoContainer:
-    {
-        margin: 20,
-
-    },
-    galleryContainer:
+    gallery:
     {
         flex: 1,
     },
-    image:
+    img:
     {
-        ...Platform.select({
-            ios:
-            {
-                flex: 1,
-                aspectRatio: 1,           
-            },
-            android:
-            {
-                flex: 1,
-                aspectRatio: 1,
-            },
-            default:
-            {
-                // width: '100%',
-                height: 500,
-                aspectRatio: 1,
-            },
-        }),
+        flex: 1,
+        aspectRatio: 1
     },
-    imageContainer:
+    touchable:
     {
         flex: 1/3,
     }
-
-});
+})

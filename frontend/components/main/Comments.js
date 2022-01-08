@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TextInput, Button,  } from 'react-native';
+import { View, Text, FlatList, TextInput, Button } from 'react-native';
 
-import Firebase from 'firebase';
-require('firebase/firestore');
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -40,7 +40,7 @@ function Comments(props)
 
         if(props.route.params.postId !== postId)
         {
-            Firebase.firestore()
+            firestore()
             .collection("posts")
             .doc(props.route.params.uid)
             .collection("userPosts")
@@ -68,14 +68,14 @@ function Comments(props)
     {
         if(text !== "")
         {
-            Firebase.firestore()
+            firestore()
             .collection("posts")
             .doc(props.route.params.uid)
             .collection("userPosts")
             .doc(props.route.params.postId)
             .collection("comments")
             .add({
-                creator: Firebase.auth().currentUser.uid,
+                creator: auth().currentUser.uid,
                 text
             })
         }

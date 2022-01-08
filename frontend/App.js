@@ -1,10 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { ActivityIndicator, StyleSheet, Text, View, Platform } from 'react-native';
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme, View, } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
-import { navigationRef } from './components/navigation/RootNavigation';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import auth from '@react-native-firebase/auth';
+
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import rootReducer from './redux/reducers';
+import thunk from 'redux-thunk';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 import LandingScreen from './components/auth/Landing';
 import RegisterScreen from './components/auth/Register';
@@ -14,27 +20,7 @@ import AddScreen from './components/main/Add';
 import SaveScreen from './components/main/Save';
 import CommentsScreen from './components/main/Comments';
 
-import Firebase from 'firebase';
-
-import { firebaseConfig } from './Firebase-Config';
-
-if(Firebase.apps.length === 0)
-{
-    Firebase.initializeApp(firebaseConfig);
-}
-
-
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from './redux/reducers';
-import thunk from 'redux-thunk';
-
-const store = createStore(rootReducer, applyMiddleware(thunk));
-
-const Stack = createStackNavigator();
-
-//Remove afterwards
-console.disableYellowBox = true;
+const Stack = createNativeStackNavigator();
 
 export class App extends Component
 {
@@ -42,73 +28,52 @@ export class App extends Component
     {
         super(props);
 
-        this.state =
-        {
-            loggedIn: false,
+        this.state = {
             loaded: false,
         }
     }
 
     componentDidMount()
     {
-        Firebase.auth().onAuthStateChanged((user) =>
-        {
+        auth().onAuthStateChanged((user) => {
             if(!user)
             {
                 this.setState({
                     loggedIn: false,
-                    loaded: true,
-                });
+                    loaded: true
+                })
             }
             else
             {
                 this.setState({
                     loggedIn: true,
-                    loaded: true,
-                });
+                    loaded: true
+                })
             }
-        });
+        })
     }
 
     render()
     {
         const { loggedIn, loaded } = this.state;
 
-        function getHeaderTitle(route)
-        {
-            // If the focused route is not found, we need to assume it's the initial screen
-            // This can happen during if there hasn't been any navigation inside the screen
-            // In our case, it's "Feed" as that's the first screen inside the navigator
-            const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
-          
-            switch(routeName)
-            {
-                case 'Feed':
-                    return 'Feed';
-                case 'Profile':
-                    return 'Profile';
-                case 'Search':
-                    return 'Search';
-            }
-        }
-
         if(!loaded)
         {
             return(
                 <View style={styles.container}>
-                    <ActivityIndicator size="large" />
+                    <Text>Loading...</Text>
                 </View>
             )
         }
 
         if(!loggedIn)
-        {
+        {   
             return (
                 <NavigationContainer>
                     <Stack.Navigator initialRouteName="Landing">
-                        <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false}} />
-                        <Stack.Screen name="Register" component={RegisterScreen} />
-                        <Stack.Screen name="Login" component={LoginScreen} />
+                        <Stack.Screen name="Landing" component={LandingScreen} options={{ headerShown: false }} />
+                        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
+                        <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                     </Stack.Navigator>
                 </NavigationContainer>
             )
@@ -116,17 +81,18 @@ export class App extends Component
 
         return(
             <Provider store={store}>
-                <NavigationContainer ref={navigationRef}>
+                <StatusBar 
+                    animated={true}
+                    backgroundColor="#4f2abc"
+                    barStyle="light-content"
+                />
+                <NavigationContainer>
                     <Stack.Navigator initialRouteName="Main">
-                        <Stack.Screen name="Main" component={MainScreen}
-                            options={({ route }) => ({
-                                headerTitle: getHeaderTitle(route),
-                                headerShown: Platform.OS === 'android'? true: (Platform.OS === 'ios'? true: false),
-                            })} />
+                        <Stack.Screen name="Main" component={MainScreen} options={{ headerShown: false }} />
                         <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} />
                         <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} />
                         <Stack.Screen name="Comments" component={CommentsScreen} navigation={this.props.navigation} />
-                    </Stack.Navigator>                    
+                    </Stack.Navigator>
                 </NavigationContainer>
             </Provider>
         )
@@ -139,9 +105,6 @@ const styles = StyleSheet.create({
     container:
     {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        alignSelf: 'center',
-    },
-});
+        backgroundColor: '#000',
+    }
+})

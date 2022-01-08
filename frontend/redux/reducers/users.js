@@ -1,14 +1,12 @@
-import { USERS_DATA_STATE_CHANGE, USERS_POSTS_STATE_CHANGE, USERS_LIKES_STATE_CHANGE, CLEAR_DATA } from "../constants";
+import { USERS_DATA_STATE_CHANGE, USERS_POSTS_STATE_CHANGE, CLEAR_DATA, USERS_LIKES_STATE_CHANGE } from '../constants';
 
-const initialState =
-{
+const initialState = {
     users: [],
     feed: [],
     usersFollowingLoaded: 0
-};
+}
 
-export const users = (state = initialState, action) =>
-{
+export const users = (state = initialState, action) => {
     switch(action.type)
     {
         case USERS_DATA_STATE_CHANGE:
@@ -32,5 +30,4 @@ export const users = (state = initialState, action) =>
         default:
             return state;
     }
-    
-};
+}

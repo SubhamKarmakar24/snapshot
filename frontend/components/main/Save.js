@@ -1,41 +1,35 @@
-import React, { useState, useFocusEffect, useCallback } from 'react';
-import { View, TextInput, Image, StyleSheet, Button, BackHandler } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Image, StyleSheet, Button, Dimensions } from 'react-native';
 
-import Firebase from 'firebase';
-require("firebase/firestore");
-require("firebase/firebase-storage");
+import auth from '@react-native-firebase/auth';
+import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
 export default function Save(props)
 {
-    //https://reactnavigation.org/docs/preventing-going-back/
-    // Make the changes from here
-
-    const [caption, setCaption] = useState("");
+    const [caption, setCaption] = useState('');
 
     const uploadImage = async () =>
     {
         const uri = props.route.params.image;
-        const childPath = `post/${Firebase.auth().currentUser.uid}/${Math.random().toString(36)}`;
-        console.log(childPath);
+        const path = `post/${auth().currentUser.uid}/${Math.random().toString(36)}`;
 
         const response = await fetch(uri);
         const blob = await response.blob();
 
-        const task = Firebase.storage().ref().child(childPath).put(blob);
+        const task = storage().ref().child(path).put(blob);
 
         const taskProgress = snapshot =>
         {
-            console.log(`transferred: ${snapshot.bytesTransferred}`);
+            console.log(`Transferred: ${snapshot.bytesTransferred}`);
         }
 
         const taskCompleted = () =>
         {
-            task.snapshot.ref.getDownloadURL().then((snapshot) =>
-            {
+            task.snapshot.ref.getDownloadURL().then((snapshot) => {
                 savePostData(snapshot);
                 console.log(snapshot);
-            });
+            })
         }
 
         const taskError = snapshot =>
@@ -48,14 +42,14 @@ export default function Save(props)
 
     const savePostData = (downloadURL) =>
     {
-        Firebase.firestore().collection("posts")
-        .doc(Firebase.auth().currentUser.uid)
+        firestore().collection("posts")
+        .doc(auth().currentUser.uid)
         .collection("userPosts")
         .add({
             downloadURL,
             caption,
             likesCount: 0,
-            creation: Firebase.firestore.FieldValue.serverTimestamp(),
+            creation: firestore.FieldValue.serverTimestamp()
         })
         .then((function ()
         {
@@ -65,9 +59,9 @@ export default function Save(props)
 
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={{uri: props.route.params.image}} />
+            <Image source={{uri: props.route.params.image}} style={styles.img} />
             <TextInput
-                placeholder="Write a caption . . ."
+                placeholder="Enter caption"
                 onChangeText={(caption) => setCaption(caption)}
             />
             <Button title="Save" onPress={() => uploadImage()} />
@@ -76,16 +70,13 @@ export default function Save(props)
 }
 
 const styles = StyleSheet.create({
-
     container:
     {
         flex: 1,
     },
-    image:
+    img:
     {
-        height: 200,
-        width: 200,
-        aspectRatio: 0.75,
+        width: Dimensions.get('window').width,
+        aspectRatio: 1,
     }
-
-});
+})

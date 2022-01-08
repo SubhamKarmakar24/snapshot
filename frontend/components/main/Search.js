@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react'
+import { View, Text, TextInput, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 
-import Firebase from 'firebase';
-require('firebase/firestore');
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 export default function Search(props)
 {
@@ -10,7 +10,7 @@ export default function Search(props)
 
     const fetchUsers = (search) =>
     {
-        Firebase.firestore()
+        firestore()
         .collection("users")
         .where("name", '>=', search)
         .get()
@@ -21,11 +21,14 @@ export default function Search(props)
                 return { id, ...data };
             })
             setUsers(users);
+        })
+        .catch(err => {
+            console.log(err);
         });
     }
 
     return (
-        <View>
+        <View style={styles.container}>
             <TextInput
                 placeholder="Search for other users"
                 onChangeText={(search) => fetchUsers(search)}
@@ -45,3 +48,11 @@ export default function Search(props)
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container:
+    {
+        flex: 1,
+        backgroundColor: '#000',
+    }
+})

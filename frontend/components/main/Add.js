@@ -1,96 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView } from 'react-native';
-import { Camera } from 'expo-camera';
-import * as ImagePicker from 'expo-image-picker';
+import React, { useState, useEffect } from 'react'
+import { View, Text, Button, Image, ImageProps, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import ImagePicker, { ImageOrVideo } from 'react-native-image-crop-picker';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { BottomNavigation } from 'react-native-paper';
 
 export default function Add({ navigation })
 {
-    const [hasCameraPermission, setHasCameraPermission] = useState(null);
-    const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
-    const [camera, setCamera] = useState(null);
+    const [hasPermission, setHasPermission] = useState(null);
     const [image, setImage] = useState(null);
-    const [type, setType] = useState(Camera.Constants.Type.back);
+    const [error, setError] = useState(null);
 
-    useEffect(() =>
+    const windowWidth = Dimensions.get('window').width;
+    const windowHeight = Dimensions.get('window').height;
+
+    const openCamera = () =>
     {
-        (async () =>
-            {
-                const cameraStatus = await Camera.requestPermissionsAsync();
-                setHasCameraPermission(cameraStatus.status === 'granted');
-
-                const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
-                setHasGalleryPermission(galleryStatus.status === 'granted');
-            }
-        )();
-    }, []);
-
-    const takePicture = async () =>
-    {
-        if(camera)
-        {
-            const data = await camera.takePictureAsync(null);
-            setImage(data.uri);
-        }
-    }
-
-    const pickImage = async () =>
-    {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [1, 1],
-            quality: 1,
+        ImagePicker.openCamera({
+            width: 600,
+            height: 600,
+            cropping: true,
+            compressImageQuality: 0.9
+        })
+        .then(image => {
+            setImage(image.path);
+            console.log(image);
+        })
+        .catch(err => {
+            setError(err);
+            console.log(err);
         });
-        
-        if(!result.cancelled)
-        {
-            setImage(result.uri);
-        }
     }
 
+    const openGallery = () =>
+    {
+        ImagePicker.openPicker({
+            width: 600,
+            height: 600,
+            cropping: true,
+            compressImageQuality: 0.9
+        })
+        .then(image => {
+            setImage(image.path);
+            console.log(image);
+        })
+        .catch(err => {
+            setError(err);
+            console.log(err);
+        });
+    }
 
-    if(hasCameraPermission === null || hasGalleryPermission === null)
+    const clearTemp = () =>
     {
-        return <View />;
+        ImagePicker.clean()
+        .then(() => {
+            console.log('removed all tmp images from tmp directory');
+        })
+        .catch(err => {
+            alert(err);
+        });
     }
-    if(hasCameraPermission === false || hasGalleryPermission === false)
+
+    const save = () =>
     {
-        return <Text>No access to camera</Text>;
+
     }
-  
-    return (
-        <View style={{flex: 1}}>
-            <View style={styles.cameraContainer}>
-                <Camera style={styles.fixedRatio} type={type} ratio={'4:3'} 
-                    ref={ref => setCamera(ref)} />
+
+    return(
+        <View>
+            {
+                image?
+                    <Image
+                        style={styles.img}
+                        source={{uri: image}}
+                    />
+                :
+                    <MaterialCommunityIcons name="camera-image" color={"#000"} size={windowWidth} />
+            }
+                
+            <View>
+                <Button title="Camera" onPress={() => openCamera()} />
+                <Button title="Gallery" onPress={() => openGallery()} />
+                <Button title="Clear" onPress={() => clearTemp()} />
+                <Button title="Save" onPress={() => navigation.navigate("Save", {image})} />
             </View>
-            <Button
-                title="Flip Camera"
-                onPress={() => {
-                    setType(type === Camera.Constants.Type.back? Camera.Constants.Type.front : Camera.Constants.Type.back);
-                }} />
-            <Button title="Snap" onPress={() => takePicture()} />
-            <Button title="Choose from Gallery" onPress={() => pickImage()} />
-            <Button title="Save" onPress={() => navigation.navigate("Save", {image})} /> 
-            {image && <Image source={{uri: image}} style={styles.image} />}
         </View>
+        
     );
 }
 
 const styles = StyleSheet.create({
-
-    cameraContainer:
+    img:
     {
-        flex: 1,
+        width: Dimensions.get('window').width,
+        aspectRatio: 1,
     },
-    fixedRatio:
-    {
-        // height: '80%',
-        aspectRatio: 0.75,
-    },
-    image:
-    {
-        flex: 1,
-    }
-
-}); 
+})
