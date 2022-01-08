@@ -98,7 +98,7 @@ I have also created the **Firebase Cloud Functions** that is required for updati
 
 **MIT License**
 
-***Copyright (c) 2021 Subham Karmakar***
+***Copyright (c) 2022 Subham Karmakar***
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -125,4 +125,4 @@ SOFTWARE.**
 <br />
 
 
-A huge thanks to **Simcoder's** Youtube channel which helped me in building the bare bones of this app, upon which the future versions and extra features would be implemented, and hopefully be released to the public if the app meets the necessary performance and features that users may actually like.
+A huge thanks to **Simcoder's** Youtube channel which helped me in building the bare bones of this app, upon which the future versions and extra features would be implemented.
