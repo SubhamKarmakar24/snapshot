@@ -1,21 +1,21 @@
 # Snapshot
 ### A cross-platform social media app\* for the users to upload their snaps, follow other people of their interests, comment on others snaps and like them for the rest of the world to see.
 \*(currently configured for Android. iOS configuration requires XCode configuration. The code requires no changes in iOS).
+
 <br />
+
+Initial Beta Release v0.0.1 can be found [here](https://github.com/SubhamKarmakar24/snapshot/releases/tag/v0.0.1-beta).
+
+##
 
 ## Stacks/Libraries used :
 
-- `React Native Expo - v42.0.1`
-- `Expo Camera - v11.2.2`
-- `Expo Image Picker - v10.2.2`
-- `React Navigation - v6.0.2`
-- `React Native Gesture Handler - v1.10.3`
-- `React Native Paper - v4.9.2`
-- `React Native Vector Icons - v8.1.0`
-- `Redux - v4.1.1`
-- `React Redux - v7.2.4`
-- `Redux Thunk - v2.3.0`
-- `Firebase by Google - v8.2.3`
+- `React Native - v0.66.4`
+- `React Navigation - v6.0.6`
+- `React Native Vector Icons - v9.0.0`
+- `Redux - v4.1.2`
+- `React Redux - v7.2.6`
+- `Firebase by Google - v14.2.2`
   - `Firebase Analytics`
   - `Firebase Auth`
   - `Firestore Database`
@@ -119,16 +119,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.**
 
 <br />
-
-<br />
-
-<br />
-
-##
-
-*\*\*This app doesn't have a production build yet, and its first version would be released upon finishing the Immediate To - Dos*
-
-##
 
 <br />
 
